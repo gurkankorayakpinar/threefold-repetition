@@ -84,7 +84,7 @@ def process_moves():
 
 # GUI Setup
 root = tk.Tk()
-root.title("Konum Tekrarı Kontrolü")
+root.title("Konum Tekrarı ve 50 Hamle Kontrolü")
 
 WINDOW_W = 850
 WINDOW_H = 800
@@ -95,7 +95,7 @@ root.resizable(True, True)
 # Pencereyi ortala
 center_window(root, WINDOW_W, WINDOW_H)
 
-label = tk.Label(root, text="Hamleleri İngilizce olarak kopyalayınız.", font=("Arial", 12))
+label = tk.Label(root, text="Notasyon İngilizce olmalıdır.", font=("Arial", 12))
 label.pack(pady=5)
 
 input_box = scrolledtext.ScrolledText(root, width=110, height=10, font=("Consolas", 11))
@@ -105,7 +105,7 @@ process_button = tk.Button(root, text="Hesapla", command=process_moves,
                            font=("Arial", 12), bg="#1976D2", fg="white")
 process_button.pack(pady=10)
 
-warning_label = tk.Label(root, text="(Konum tekrarında 'rok' ve 'en passant' istisnaları da dikkate alınmaktadır.)\n('50 hamle' için uyarı sistemi mevcuttur.)",
+warning_label = tk.Label(root, text="(Konum tekrarında 'rok' ve 'en passant' istisnaları da dikkate alınmaktadır.)",
                          font=("Arial", 12))
 warning_label.pack(pady=2)
 
