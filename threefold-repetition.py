@@ -21,65 +21,68 @@ def center_window(window, width, height):
 def process_moves():
     moves_str = input_box.get("1.0", tk.END).strip()
     if not moves_str:
-        return  # UYARI VERME, SADECE ÇIK
-
+        return # UYARI VERME
+    
     try:
         game = chess.pgn.read_game(io.StringIO("[Event \"?\"]\n\n" + moves_str))
         if game is None:
-            return  # HATA VERME
+            return # HATA VERME
     except:
-        return  # HATA VERME
+        return # HATA VERME
 
     board = chess.Board()
     fen_counts = defaultdict(int)
+
+    # Başlangıç FEN kodu
+    starting_fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+    fen_counts[fen_key(starting_fen)] += 1 # Başlangıç FEN kodunu kaydet
+
     output_lines = []
+    halfmove_warning_triggered = False
+
+    # Başlangıç konumunu çıktı olarak yaz ve bir satır boşluk bırak
+    output_lines.append(f"0 - {starting_fen}")
+    output_lines.append("")  # başlangıç sonrası boş satır
 
     move_number = 1
-    fen_index = 0  # her iki FEN için sayım
-    halfmove_clock_triggered = False  # "50 hamle" tamamlandığını kontrol et
-    halfmove_warning_triggered = False  # "50 hamle" uyarısı için tetikleyici
+    moves_list = list(game.mainline_moves())
 
-    for move_index, move in enumerate(game.mainline_moves()):
+    for idx, move in enumerate(moves_list):
         board.push(move)
         full_fen = board.fen()
-        key = fen_key(full_fen)  # FEN'in tamamını dikkate al
+        key = fen_key(full_fen)
 
-        # Halfmove clock'u alıyoruz
+        # Halfmove clock kontrolü
         fields = full_fen.split()
         halfmove_clock = int(fields[4])
 
-        # "Halfmove clock" 100 veya daha büyükse, "50 hamle" uyarısı eklenir.
         if halfmove_clock >= 100 and not halfmove_warning_triggered:
             output_lines.append("\n\nUyarı: 50 hamle, aşağıdaki hamle ile tamamlanıyor.\n")
-            halfmove_warning_triggered = True  # Uyarıyı sadece bir kez ekle
+            halfmove_warning_triggered = True
 
-        # Fen kodunu kaydediyoruz
         fen_counts[key] += 1
         count = fen_counts[key]
 
-        prefix = f"{move_number} -"
+        repeat = f" ---> {count}. konum" if count > 1 else ""
 
-        if count == 1:
-            line = f"{prefix} {full_fen}"
+        if idx % 2 == 0:
+            # Beyazın hamlesi sonrası → yeni çiftin ilk satırı
+            output_lines.append(f"{move_number} - {full_fen}{repeat}")
         else:
-            line = f"{prefix} {full_fen} ---> {count}. konum"
-
-        output_lines.append(line)
-
-        fen_index += 1
-        if fen_index % 2 == 0:
+            # Siyahın hamlesi sonrası → aynı numarayı tekrar yaz
+            output_lines.append(f"{move_number} - {full_fen}{repeat}")
+            output_lines.append("")  # her "tam hamle"den sonra boş satır
             move_number += 1
 
-    # Sonuçları ekrana yaz
+    # Eğer oyun tek hamleyle bittiyse (sadece beyaz oynadıysa) boş satır bırak
+    if len(moves_list) % 2 == 1:
+        output_lines.append("")
+
+    # Çıktıyı ekrana yaz
     output_box.config(state='normal')
     output_box.delete("1.0", tk.END)
-
-    # Fen kodlarını yazdır
-    for i, ln in enumerate(output_lines, start=1):
-        output_box.insert(tk.END, ln + "\n")
-        if i % 2 == 0:
-            output_box.insert(tk.END, "\n")  # her iki satırdan sonra boşluk
-
+    for line in output_lines:
+        output_box.insert(tk.END, (line if line else "") + "\n")
     output_box.config(state='disabled')
 
 # GUI Setup
@@ -105,7 +108,7 @@ process_button = tk.Button(root, text="Kontrol", command=process_moves,
                            font=("Arial", 12), bg="#1976D2", fg="white")
 process_button.pack(pady=10)
 
-warning_label = tk.Label(root, text="Program, FIDE kuralları 9.2.3 dikkate alınarak hazırlanmıştır.\n'Hamlede olan oyuncu', 'rok' ve 'en passant' durumları dikkate alınmaktadır.\n\nAyrıca, '50 hamle' kontrolü de yapılmaktadır.\n\n(Kaynak kodu: github.com/gurkankorayakpinar/threefold-repetition)",
+warning_label = tk.Label(root, text="Program, FIDE kuralları 9.2.3 dikkate alınarak hazırlanmıştır.\n'Hamlede olan oyuncu', 'rok' ve 'en passant' durumları dikkate alınmaktadır.\n\nAyrıca, '50 hamle' kontrolü de yapılmaktadır.\n\n(github.com/gurkankorayakpinar/threefold-repetition)",
                          font=("Arial", 12))
 warning_label.pack(pady=2)
 

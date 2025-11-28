@@ -1,6 +1,6 @@
 # Threefold Repetition
 
-- Bu projede, bir satranç oyunundaki konum tekrarları kontrol edilmektedir. Mevcut satranç programlarının bu konudaki eksiklikleri dikkate alınarak hazırlanmıştır.
+- Bu projede, bir satranç oyunundaki konum tekrarları kontrol edilmektedir.
 
 ***
 
@@ -8,12 +8,8 @@
 
 - Konum tekrarları, FEN kodları karşılaştırılarak kontrol edilmektedir.
 
-- FIDE kuralları 9.2.3 uyarınca, konum tekrarlarının kontrolünde "hamlede olan" oyuncu, "rok" ve "en passant" durumları değerlendirilmektedir.
+- Başlangıç konumunu gösteren FEN kodu, en üstte yer almaktadır.
+
+- FIDE kuralları 9.2.3 uyarınca, konum tekrarlarının kontrolünde "hamlede olan oyuncu", "rok" ve "en passant" durumları dikkate alınmaktadır.
 
 - Ayrıca, "50 hamle" kontrolü de yapılmaktadır.
-
-*
-
-# Düzeltilecek veya eklenecek özellikler
-
-- Başlangıç konumuna ait FEN kodu da eklenecek.
