@@ -108,7 +108,7 @@ process_button = tk.Button(root, text="Kontrol", command=process_moves,
                            font=("Arial", 12), bg="#1976D2", fg="white")
 process_button.pack(pady=10)
 
-warning_label = tk.Label(root, text="Program, FIDE kuralları 9.2.3 dikkate alınarak hazırlanmıştır.\n'Hamlede olan oyuncu', 'rok' ve 'en passant' durumları dikkate alınmaktadır.\n\nAyrıca, '50 hamle' kontrolü de yapılmaktadır.\n\n(github.com/gurkankorayakpinar/threefold-repetition)",
+warning_label = tk.Label(root, text="Program, FIDE kuralları 9.2.3 dikkate alınarak hazırlanmıştır.\n'Hamlede olan oyuncu', 'rok' ve 'en passant' durumları dikkate alınmaktadır.\n\nAyrıca, '50 hamle' kontrolü de yapılmaktadır.\n\n(Source code: github.com/gurkankorayakpinar/threefold-repetition)",
                          font=("Arial", 12))
 warning_label.pack(pady=2)
 
