@@ -8,6 +8,6 @@
 
 - Konum tekrarları, FEN kodları karşılaştırılarak kontrol edilmektedir.
 
-- FIDE kuralları 9.2.3 uyarınca, konum tekrarlarının kontrolünde "hamlede olan" oyuncu, "rok" ve "en passant" durumları ayrı ayrı değerlendirilmektedir.
+- FIDE kuralları 9.2.3 uyarınca, konum tekrarlarının kontrolünde "hamlede olan" oyuncu, "rok" ve "en passant" durumları değerlendirilmektedir.
 
 - Ayrıca, "50 hamle" kontrolü de yapılmaktadır.
