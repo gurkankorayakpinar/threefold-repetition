@@ -11,3 +11,9 @@
 - FIDE kuralları 9.2.3 uyarınca, konum tekrarlarının kontrolünde "hamlede olan" oyuncu, "rok" ve "en passant" durumları değerlendirilmektedir.
 
 - Ayrıca, "50 hamle" kontrolü de yapılmaktadır.
+
+*
+
+# Düzeltilecek veya eklenecek özellikler
+
+- Başlangıç konumuna ait FEN kodu da eklenecek.

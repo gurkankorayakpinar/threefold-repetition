@@ -36,22 +36,22 @@ def process_moves():
 
     move_number = 1
     fen_index = 0  # her iki FEN için sayım
-    halfmove_clock_triggered = False  # 50 hamle tamamlandığını kontrol et
-    halfmove_warning_triggered = False  # 50 hamle kuralı uyarısı için tetikleyici
+    halfmove_clock_triggered = False  # "50 hamle" tamamlandığını kontrol et
+    halfmove_warning_triggered = False  # "50 hamle" uyarısı için tetikleyici
 
     for move_index, move in enumerate(game.mainline_moves()):
         board.push(move)
         full_fen = board.fen()
-        key = fen_key(full_fen)  # FEN'in tamamını dikkate alıyoruz
+        key = fen_key(full_fen)  # FEN'in tamamını dikkate al
 
         # Halfmove clock'u alıyoruz
         fields = full_fen.split()
         halfmove_clock = int(fields[4])
 
-        # Eğer halfmove clock 100 veya daha büyükse, "50 hamle" uyarısını ekle
+        # "Halfmove clock" 100 veya daha büyükse, "50 hamle" uyarısı eklenir.
         if halfmove_clock >= 100 and not halfmove_warning_triggered:
             output_lines.append("\n\nUyarı: 50 hamle, aşağıdaki hamle ile tamamlanıyor.\n")
-            halfmove_warning_triggered = True  # Uyarıyı sadece bir kez ekliyoruz
+            halfmove_warning_triggered = True  # Uyarıyı sadece bir kez ekle
 
         # Fen kodunu kaydediyoruz
         fen_counts[key] += 1
@@ -87,34 +87,30 @@ root = tk.Tk()
 root.title("Konum Tekrarı (v. 1.0)")
 
 WINDOW_W = 850
-WINDOW_H = 850
+WINDOW_H = 800
 
-# Pencere boyutu (yatay ve dikey olarak) sabit değil, tam ekran yapılabilir. (Sabitlemek için "False" yapılmalıdır.)
-root.resizable(True, True)
+# Pencereyi oluştur ve boyutunu ayarla
+root.geometry(f"{WINDOW_W}x{WINDOW_H}")
 
-# Pencereyi ortala
+# Pencere için "yatay ve dikey ortalama" ayarlandı.
 center_window(root, WINDOW_W, WINDOW_H)
 
-label = tk.Label(root, text="Notasyonu kopyalayınız.\n(İngilizce olması gerekmektedir, Va4 yerine Qa4 gibi)", font=("Arial", 12))
+label = tk.Label(root, text="Notasyonu buraya aktarınız.\n(İngilizce notasyon gerekmektedir, Va4 yerine Qa4 gibi)", font=("Arial", 12))
 label.pack(pady=5)
 
-input_box = scrolledtext.ScrolledText(root, width=110, height=13, font=("Consolas", 11))
+input_box = scrolledtext.ScrolledText(root, width=110, height=12, font=("Consolas", 11))
 input_box.pack(pady=5)
 
 process_button = tk.Button(root, text="Kontrol", command=process_moves,
                            font=("Arial", 12), bg="#1976D2", fg="white")
 process_button.pack(pady=10)
 
-warning_label = tk.Label(root, text="Program, FIDE kuralları 9.2.3 dikkate alınarak hazırlanmıştır.\n'Hamlede olan' oyuncu, 'rok' ve 'en passant' durumları değerlendirilmektedir.\n\n(Ayrıca, '50 hamle' kontrolü de yapılmaktadır.)",
+warning_label = tk.Label(root, text="Program, FIDE kuralları 9.2.3 dikkate alınarak hazırlanmıştır.\n'Hamlede olan oyuncu', 'rok' ve 'en passant' durumları dikkate alınmaktadır.\n\nAyrıca, '50 hamle' kontrolü de yapılmaktadır.\n\n(Kaynak kodu: github.com/gurkankorayakpinar/threefold-repetition)",
                          font=("Arial", 12))
 warning_label.pack(pady=2)
 
 output_box = scrolledtext.ScrolledText(root, width=110, height=20, font=("Consolas", 11))
 output_box.pack(pady=5)
 output_box.config(state='disabled')
-
-# Footer olarak, "Düzenleyen: Gürkan Koray Akpınar" metnini ekliyoruz
-footer = tk.Label(root, text="Kaynak kodu: github.com/gurkankorayakpinar/threefold-repetition", font=("Arial", 12, "bold"))
-footer.pack(pady=5)
 
 root.mainloop()
