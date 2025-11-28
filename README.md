@@ -6,7 +6,7 @@
 
 - Notasyonun İngilizce olması gerekmektedir. Notasyon, satranç platformlarından kopyalanabilir.
 
-- Konum tekrarları, FEN kodları karşılaştırılarak kontrol edilmektedir. FEN kodlarında "rok" ve "en passant" kontrolü zaten mevcuttur.
+- Konum tekrarları, FEN kodları karşılaştırılarak kontrol edilmektedir.
 
 - FIDE kuralları 9.2.3 uyarınca, konum tekrarlarının kontrolünde "hamlede olan" oyuncu, "rok" ve "en passant" durumları ayrı ayrı değerlendirilmektedir.
 
