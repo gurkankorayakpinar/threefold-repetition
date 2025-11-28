@@ -1,6 +1,6 @@
 # Threefold Repetition
 
-- Bu projede, bir satranç oyununa ait notasyon üzerinden konum tekrarları kontrol edilmektedir. Mevcut satranç programlarının bu konudaki eksiklikleri de dikkate alınmıştır.
+- Bu projede, bir satranç oyunundaki konum tekrarları kontrol edilmektedir. Mevcut satranç programlarının bu konudaki eksiklikleri dikkate alınarak hazırlanmıştır.
 
 ***
 
