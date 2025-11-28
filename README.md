@@ -4,10 +4,10 @@
 
 ***
 
-- Notasyonun İngilizce yazılması gerekmektedir. Notasyon, satranç platformlarından kopyalanabilir.
+- Notasyonun İngilizce olması gerekmektedir. Notasyon, satranç platformlarından kopyalanabilir.
 
-- Konum tekrarları, FEN kodları karşılaştırılarak kontrol edilmektedir.
+- Konum tekrarları, FEN kodları karşılaştırılarak kontrol edilmektedir. FEN kodlarında "rok" ve "en passant" kontrolü zaten mevcuttur.
 
-- FIDE kuralları uyarınca, konum tekrarlarının kontrolünde "rok" ve "en passant" durumları da dikkate alınmaktadır.
+- FIDE kuralları 9.2.3 uyarınca, konum tekrarlarının kontrolünde "hamlede olan" oyuncu, "rok" ve "en passant" durumları ayrı ayrı değerlendirilmektedir.
 
-- Programda "konum tekrarı" kontrolüne ek olarak, "50 hamle" kontrolü de yapılmaktadır.
+- Ayrıca, "50 hamle" kontrolü de yapılmaktadır.
