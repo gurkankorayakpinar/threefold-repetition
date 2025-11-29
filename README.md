@@ -13,3 +13,11 @@
 - FIDE kuralları 9.2.3 uyarınca, konum tekrarlarının kontrolünde "hamlede olan oyuncu", "rok" ve "en passant" durumları dikkate alınmaktadır.
 
 - Ayrıca, "50 hamle" kontrolü de yapılmaktadır.
+
+***
+***
+***
+
+# Düzeltilecek veya eklenecek özellikler
+
+- Türkçe notasyon sorgulama seçeneği eklenecek.
