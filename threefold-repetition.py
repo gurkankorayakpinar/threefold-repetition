@@ -134,8 +134,7 @@ warning_label = tk.Label(
     root,
     text="Program, FIDE kuralları 9.2.3 dikkate alınarak hazırlanmıştır.\n"
          "'Hamlede olan oyuncu', 'rok' ve 'en passant' durumları dikkate alınmaktadır.\n\n"
-         "Ayrıca, '50 hamle' ve '75 hamle' takibi de yapılmaktadır.\n\n"
-         "(Düzenleyen: 11841)",
+         "Ayrıca, '50 hamle' ve '75 hamle' takibi de yapılmaktadır.",
     font=("Arial", 12)
 )
 warning_label.pack(pady=2)
