@@ -4,6 +4,15 @@ import chess
 import chess.pgn
 import io
 from collections import defaultdict
+import sys, os
+
+# ".ico" dosyası için
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
 
 def fen_key(full_fen):
     parts = full_fen.split()
@@ -37,7 +46,7 @@ def process_moves():
     starting_fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
     start_key = fen_key(starting_fen)
     fen_counts[start_key] += 1
-    fen_to_moves[start_key].append(0)  # 0 = başlangıç
+    fen_to_moves[start_key].append(0) # 0 = başlangıç
 
     output_lines = []
     halfmove_warning_triggered = False
@@ -54,7 +63,7 @@ def process_moves():
         full_fen = board.fen()
         key = fen_key(full_fen)
 
-        # Halfmove clock
+        # Halfmove clock ("Hamle" sayacı)
         fields = full_fen.split()
         halfmove_clock = int(fields[4])
 
@@ -68,7 +77,6 @@ def process_moves():
             output_lines.append("\n\nUyarı: 75 hamle kuralı, aşağıdaki hamle ile tamamlanıyor.\n")
             halfmove_75_triggered = True
 
-        # FEN sayıları
         fen_counts[key] += 1
         count = fen_counts[key]
 
@@ -76,7 +84,7 @@ def process_moves():
         if current_move_nr not in fen_to_moves[key]:
             fen_to_moves[key].append(current_move_nr)
 
-        # Konum tekrarı bilgisi
+        # "Konum tekrarı" bilgisi
         repeat = ""
         if count > 1:
             previous_moves = sorted(fen_to_moves[key])
@@ -100,10 +108,11 @@ def process_moves():
         output_box.insert(tk.END, (line if line else "") + "\n")
     output_box.config(state='disabled')
 
-# GUI
+# GUI - Tkinter
 
 root = tk.Tk()
-root.title("Konum Tekrarı (v. 1.0)")
+root.title("Konum Tekrarı (1.0)")
+root.iconbitmap(resource_path("tsf-icon.ico")) # Proje klasöründeki ".ico" dosyası
 
 WINDOW_W = 850
 WINDOW_H = 800
@@ -126,7 +135,7 @@ warning_label = tk.Label(
     text="Program, FIDE kuralları 9.2.3 dikkate alınarak hazırlanmıştır.\n"
          "'Hamlede olan oyuncu', 'rok' ve 'en passant' durumları dikkate alınmaktadır.\n\n"
          "Ayrıca, '50 hamle' ve '75 hamle' takibi de yapılmaktadır.\n\n"
-         "(github.com/gurkankorayakpinar/threefold-repetition)",
+         "(Proje: github.com/gurkankorayakpinar/threefold-repetition)",
     font=("Arial", 12)
 )
 warning_label.pack(pady=2)
