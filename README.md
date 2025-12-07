@@ -4,9 +4,9 @@
 
 ***
 
-- Konum tekrarları, FEN kodları karşılaştırılarak kontrol edilmektedir.
-
 - Notasyonun ("K" harfinden dolayı) İngilizce olması gerekmektedir.
+
+- Konum tekrarları, FEN kodları karşılaştırılarak kontrol edilmektedir.
 
 - Başlangıç konumunu gösteren FEN kodu, en üstte yer almaktadır.
 

@@ -135,7 +135,7 @@ warning_label = tk.Label(
     text="Program, FIDE kuralları 9.2.3 dikkate alınarak hazırlanmıştır.\n"
          "'Hamlede olan oyuncu', 'rok' ve 'en passant' durumları dikkate alınmaktadır.\n\n"
          "Ayrıca, '50 hamle' ve '75 hamle' takibi de yapılmaktadır.\n\n"
-         "(Proje: github.com/gurkankorayakpinar/threefold-repetition)",
+         "(Düzenleyen: 11841)",
     font=("Arial", 12)
 )
 warning_label.pack(pady=2)
