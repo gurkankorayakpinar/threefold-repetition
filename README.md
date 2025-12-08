@@ -4,7 +4,7 @@
 
 ***
 
-- Konum tekrarları, FEN kodları karşılaştırılarak kontrol edilmektedir.
+- Kontrol işlemi, FEN kodları üzerinden yapılmaktadır.
 
 - Notasyonun İngilizce olması gerekmektedir.
 

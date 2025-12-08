@@ -84,7 +84,6 @@ def process_moves():
         if current_move_nr not in fen_to_moves[key]:
             fen_to_moves[key].append(current_move_nr)
 
-        # "Konum tekrarı" bilgisi
         repeat = ""
         if count > 1:
             previous_moves = sorted(fen_to_moves[key])
@@ -134,7 +133,8 @@ warning_label = tk.Label(
     root,
     text="Program, FIDE kuralları 9.2.3 dikkate alınarak hazırlanmıştır.\n"
          "'Hamlede olan oyuncu', 'rok' ve 'en passant' durumları dikkate alınmaktadır.\n\n"
-         "Ayrıca, '50 hamle' ve '75 hamle' takibi de yapılmaktadır.",
+         "Ayrıca, '50 hamle' ve '75 hamle' takibi de yapılmaktadır.\n\n"
+         "(Düzenleme tarihi: 08.12.2025)",
     font=("Arial", 12)
 )
 warning_label.pack(pady=2)
